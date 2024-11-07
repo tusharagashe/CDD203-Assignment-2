@@ -150,6 +150,7 @@ class LogisticRegression(BaseRegressor):
         Returns: 
             gradients for a given loss function type np.ndarray (n-dimensional array)
         """
+        #use derivative of binary cross entropy function 
         grad = np.dot(X.T,(self.make_prediction(X)-y))
         return grad
     
@@ -167,7 +168,9 @@ class LogisticRegression(BaseRegressor):
         Returns: 
             average loss 
         """
+        #first get prediction to calcualte loss
         y_pred = self.make_prediction(X)
+        #use binary cross entropy equation to calculate loss 
         loss = (-1 / y_pred.shape[0]) * np.sum(y * np.log(y_pred) + (1-y)*np.log(1-y_pred))
         return loss
         pass
@@ -184,6 +187,7 @@ class LogisticRegression(BaseRegressor):
         Returns: 
             y_pred for given X
         """
+        #use sigmoid function to generate prediction array 
         y_pred = 1 / (1 + np.exp(-np.dot(X, self.W)))
         return y_pred
         pass
